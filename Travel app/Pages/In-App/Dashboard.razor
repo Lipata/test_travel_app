@@ -1,0 +1,201 @@
+@page "/in-app"
+@inject NavigationManager NavigationManager
+@inject TravelAppData.TravelAppDataService travelAppDataService
+@inject Northwind.NorthwindService northwindService
+
+<div class="row-layout dashboard-container">
+    <div class="row-layout group">
+        <div class="column-layout group_1">
+            <div class="column-layout group_2">
+                <div class="column-layout group_3">
+                    <h4 class="h4">
+                        Hi, Sarah!
+                    </h4>
+                    <p class="typography__subtitle-1 text">
+                        We have some great suggestions for your next travel! We've searched the whole web to provide you with these rare findings - special for you!
+                    </p>
+                </div>
+            </div>
+            <div class="column-layout group_4">
+                <div class="row-layout group_5">
+                    <h6 class="h6">
+                        Latest in articles
+                    </h6>
+                    <IgbButton Variant="ButtonVariant.Outlined" @onclick="@(e => Navigate("in-app/articles"))" class="button" dashboard-scope>
+                        view all ARTICLES
+                        <IgbRipple></IgbRipple>
+                    </IgbButton>
+                </div>
+                <div class="row-layout group_6">
+                    @foreach (var item in travelAppDataSelectedArticles)
+                    {
+                        <IgbCard Outlined="true" class="card" dashboard-scope>
+                            <IgbCardMedia class="media-content" dashboard-scope>
+                                <img src="@item.Image_url" class="image" />
+                            </IgbCardMedia>
+                            <IgbCardHeader>
+                                <h3 slot="title">
+                                    @item.Title
+                                </h3>
+                                <h5 slot="subtitle">
+                                    @item.Subtitle
+                                </h5>
+                            </IgbCardHeader>
+                            <IgbCardActions class="actions-content" dashboard-scope>
+                                <IgbButton Variant="ButtonVariant.Flat" class="icon-button">
+                                    <span class="material-icons">
+                                        bookmark_border
+                                    </span>
+                                    <IgbRipple></IgbRipple>
+                                </IgbButton>
+                                <IgbButton Variant="ButtonVariant.Flat" class="icon-button">
+                                    <span class="material-icons">
+                                        share
+                                    </span>
+                                    <IgbRipple></IgbRipple>
+                                </IgbButton>
+                                <IgbButton Variant="ButtonVariant.Outlined" class="button_1" dashboard-scope>
+                                    read
+                                    <IgbRipple></IgbRipple>
+                                </IgbButton>
+                            </IgbCardActions>
+                        </IgbCard>
+                    }
+                    <div class="column-layout group_7">
+                        <IgbButton Variant="ButtonVariant.Outlined" @onclick="@(e => Navigate("in-app/articles"))" class="button_1" dashboard-scope>
+                            VIEW ALL
+                            <IgbRipple></IgbRipple>
+                        </IgbButton>
+                    </div>
+                </div>
+            </div>
+            <div class="column-layout group_8">
+                <div class="row-layout group_9">
+                    <h6 class="h6">
+                        Destinations
+                    </h6>
+                    <IgbButton Variant="ButtonVariant.Outlined" class="button" dashboard-scope>
+                        VIEW ALL DESTINATIONS
+                        <IgbRipple></IgbRipple>
+                    </IgbButton>
+                </div>
+                <div class="row-layout group_6">
+                    @foreach (var item in travelAppDataDestinations)
+                    {
+                        <IgbCard Outlined="true" class="card" dashboard-scope>
+                            <IgbCardMedia class="media-content" dashboard-scope>
+                                <img src="@item.Image_url" class="image" />
+                            </IgbCardMedia>
+                            <IgbCardHeader>
+                                <h3 slot="title">
+                                    @item.Title
+                                </h3>
+                                <h5 slot="subtitle">
+                                </h5>
+                            </IgbCardHeader>
+                            <IgbCardActions class="actions-content" dashboard-scope>
+                                <IgbButton Variant="ButtonVariant.Flat" class="icon-button">
+                                    <span class="material-icons">
+                                        bookmark_border
+                                    </span>
+                                    <IgbRipple></IgbRipple>
+                                </IgbButton>
+                                <IgbButton Variant="ButtonVariant.Flat" class="icon-button">
+                                    <span class="material-icons">
+                                        share
+                                    </span>
+                                    <IgbRipple></IgbRipple>
+                                </IgbButton>
+                                <IgbButton Variant="ButtonVariant.Outlined" class="button_1" dashboard-scope>
+                                    view
+                                    <IgbRipple></IgbRipple>
+                                </IgbButton>
+                            </IgbCardActions>
+                        </IgbCard>
+                    }
+                    <div class="column-layout group_7">
+                        <IgbButton Variant="ButtonVariant.Outlined" class="button_1" dashboard-scope>
+                            discover more
+                            <IgbRipple></IgbRipple>
+                        </IgbButton>
+                    </div>
+                </div>
+            </div>
+            <div class="column-layout group_10">
+                <div class="row-layout group_9">
+                    <h6 class="h6">
+                        My travel lists
+                    </h6>
+                    <IgbButton Variant="ButtonVariant.Outlined" class="button" dashboard-scope>
+                        VIEW ALL LISTS
+                        <IgbRipple></IgbRipple>
+                    </IgbButton>
+                </div>
+                <div class="row-layout group_11">
+                    <IgbDataGrid DataSource="northwindProducts" Density="ControlDisplayDensity.Cosy" AutoGenerateColumns="false" SelectionMode="GridSelectionMode.None" Width="100%" Height="200px" DefaultColumnMinWidth="136" class="grid" dashboard-scope>
+                        <IgbNumericColumn HeaderText="productID" Field="ProductID" IsFilteringEnabled="true"></IgbNumericColumn>
+                        <IgbNumericColumn HeaderText="supplierID" Field="SupplierID" IsFilteringEnabled="true"></IgbNumericColumn>
+                        <IgbNumericColumn HeaderText="categoryID" Field="CategoryID" IsFilteringEnabled="true"></IgbNumericColumn>
+                        <IgbTextColumn HeaderText="quantityPerUnit" Field="QuantityPerUnit" IsFilteringEnabled="true"></IgbTextColumn>
+                        <IgbNumericColumn HeaderText="unitPrice" Field="UnitPrice" IsFilteringEnabled="true"></IgbNumericColumn>
+                        <IgbNumericColumn HeaderText="unitsInStock" Field="UnitsInStock" IsFilteringEnabled="true"></IgbNumericColumn>
+                        <IgbNumericColumn HeaderText="unitsOnOrder" Field="UnitsOnOrder" IsFilteringEnabled="true"></IgbNumericColumn>
+                        <IgbNumericColumn HeaderText="reorderLevel" Field="ReorderLevel" IsFilteringEnabled="true"></IgbNumericColumn>
+                        <IgbTextColumn HeaderText="discontinued" Field="Discontinued" IsFilteringEnabled="true"></IgbTextColumn>
+                        <IgbTextColumn HeaderText="name" Field="Name" IsFilteringEnabled="true"></IgbTextColumn>
+                    </IgbDataGrid>
+                </div>
+            </div>
+        </div>
+        <div class="column-layout group_12">
+            <div class="row-layout group_13">
+                <h6 class="h6">
+                    Photos
+                </h6>
+                <IgbButton Variant="ButtonVariant.Outlined" class="button" dashboard-scope>
+                    GO TO ALBUM
+                    <IgbRipple></IgbRipple>
+                </IgbButton>
+            </div>
+            <div class="column-layout group_14">
+                <div class="column-layout group_15">
+                    <div class="row-layout group_16">
+                        <div class="column-layout group_17">
+                            @foreach (var item in travelAppDataImageSet1)
+                            {
+                                <img src="@item.Image_url" class="image_1" />
+                            }
+                        </div>
+                        <div class="column-layout group_17">
+                            @foreach (var item in travelAppDataImageSet2)
+                            {
+                                <img src="@item.Image_url" class="image_1" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private TravelAppData.SelectedArticlesType[] travelAppDataSelectedArticles = Array.Empty<TravelAppData.SelectedArticlesType>();
+    private TravelAppData.DestinationsType[] travelAppDataDestinations = Array.Empty<TravelAppData.DestinationsType>();
+    private Northwind.ProductsType[] northwindProducts = Array.Empty<Northwind.ProductsType>();
+    private TravelAppData.ImageSet1Type[] travelAppDataImageSet1 = Array.Empty<TravelAppData.ImageSet1Type>();
+    private TravelAppData.ImageSet2Type[] travelAppDataImageSet2 = Array.Empty<TravelAppData.ImageSet2Type>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        travelAppDataSelectedArticles = await this.travelAppDataService.GetSelectedArticles() ?? travelAppDataSelectedArticles;
+        travelAppDataDestinations = await this.travelAppDataService.GetDestinations() ?? travelAppDataDestinations;
+        travelAppDataImageSet1 = await this.travelAppDataService.GetImageSet1() ?? travelAppDataImageSet1;
+        travelAppDataImageSet2 = await this.travelAppDataService.GetImageSet2() ?? travelAppDataImageSet2;
+        northwindProducts = await this.northwindService.GetProducts() ?? northwindProducts;
+    }
+    private void Navigate(string path)
+    {
+        NavigationManager.NavigateTo(path);
+    }
+}

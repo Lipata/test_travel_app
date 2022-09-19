@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IgniteUI.Blazor" Version="22.1.41" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Shared/Home.razor.css" CssScope="home-scope" />
+    <None Update="Pages/Home/Login.razor.css" CssScope="login-scope" />
+    <None Update="Pages/Home/ResetPassword.razor.css" CssScope="reset-password-scope" />
+    <None Update="Pages/Home/SetNewPassword.razor.css" CssScope="set-new-password-scope" />
+    <None Update="Pages/Home/SignUp.razor.css" CssScope="sign-up-scope" />
+    <None Update="Shared/InApp.razor.css" CssScope="in-app-scope" />
+    <None Update="Pages/In-App/Dashboard.razor.css" CssScope="dashboard-scope" />
+    <None Update="Pages/In-App/Articles.razor.css" CssScope="articles-scope" />
+  </ItemGroup>
+
+</Project>
